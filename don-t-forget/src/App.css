@@ -18,6 +18,14 @@
   font-size: large;
 }
 
+.App-fuente-intro {
+  font-family:cursive;
+}
+
+.App-fuente {
+  font-family: monospace;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
