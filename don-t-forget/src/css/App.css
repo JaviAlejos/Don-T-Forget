@@ -1,0 +1,9 @@
+.App {
+  margin: 0;
+  padding: 0;
+  }
+
+.carousel-caption {
+    top: 0;
+    bottom: auto;
+}
