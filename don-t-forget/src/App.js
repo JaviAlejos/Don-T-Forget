@@ -5,6 +5,7 @@ import './css/App.css';
 import logo from '../public/Remember.png' ;
 import caritem1 from '../public/Remember-birthday.jpg' ;
 import caritem2 from '../public/Remember-pass.jpg' ;
+import caritem3 from '../public/Remember-shopping.jpg' ;
 
 class App extends Component {
   render() {
@@ -22,7 +23,7 @@ class App extends Component {
               <NavItem><Button bsSize="large" bsStyle="info">Sign In</Button></NavItem>
             </Nav>
             <Nav className="App">
-              <NavItem> <h1 className="App"> Don't Forget - Remind is your power</h1></NavItem>
+              <NavItem> <h1 className="App"> Are you forgetting something?</h1></NavItem>
             </Nav>
         </Navbar>
 </div>
@@ -30,7 +31,7 @@ class App extends Component {
  <div>
         <Carousel>
             <Carousel.Item>
-              <img width={1050} height={300} alt="1050x300" src={caritem1}/>
+              <img width={1050} height={300} alt="by Will Clayton" src={caritem1}/>
               <Carousel.Caption>
                 <h3>Do you usually forget birthdays?</h3>
                 <p>This is your Website!!!!</p>
@@ -38,16 +39,16 @@ class App extends Component {
 
             </Carousel.Item>
             <Carousel.Item>
-              <img width={1050} height={300} alt="1050x300" src={caritem2}/>
+              <img width={1050} height={300} alt="by BlakeCeeno" src={caritem2}/>
               <Carousel.Caption>
                 <h3>Do you usually forget your passwords?</h3>
                 <p>This is your Website!!!!</p>
               </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
-              <img width={350} height={300} alt="350x300" src="/assets/carousel.png"/>
+              <img width={1050} height={300} alt="by Mittmac" src={caritem3}/>
               <Carousel.Caption>
-                <h3>Do you usually forget buy something?</h3>
+                <h3>Do you usually forget the shopping list or buy something on the Grocery?</h3>
                 <p>This is your Website!!!!</p>
               </Carousel.Caption>
             </Carousel.Item>
