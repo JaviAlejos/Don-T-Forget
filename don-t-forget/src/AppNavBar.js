@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './css/App.css';
 import logo from '../public/Remember.png';
 import firebase from 'firebase';
+import {connect} from 'react-redux';
 
 class AppNavBar extends Component {
 
@@ -18,21 +19,22 @@ class AppNavBar extends Component {
     }
 
     logout() {
+        const { addUser } = this.props;
         firebase.auth().signOut().then(result => console.log(`${result.user.email} ha cerrado sesión`)).catch(error => console.log(`${error.code}:${error.message}`));
-        this.props.store.dispatch({ type:'ADD_USER', user:""});
-        console.log("cierro sesion");
-
+        addUser("");
     }
 
     componentWillMount() {
+      const { addUser } = this.props;
         firebase.auth().onAuthStateChanged(user => {
           if (user!=null)
-            this.props.store.dispatch({ type:'ADD_USER', user});
+            addUser(user);
         });
     }
 
     renderButton() {
-        if (this.props.store.getState().user) {
+      const { user } = this.props;
+        if (user) {
             return (
                 <Button bsSize="large" bsStyle="info" onClick={this.logout}>Sign Out</Button>
             );
@@ -74,4 +76,22 @@ class AppNavBar extends Component {
     }
 }
 
-export default AppNavBar;
+var mapStateToProps=function(state) {
+  return {
+    user:state.user
+  }
+}
+
+
+var mapDispatchToProps = function(dispatch) {
+  return {
+    addUser: function(user) {
+      dispatch({
+        type: 'ADD_USER',
+        user
+      })
+    }
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(AppNavBar);

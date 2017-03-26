@@ -2,6 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import firebase from 'firebase';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+var dispatch=function (state, action) {
+debugger;
+  switch (action.type) {
+  case 'ADD_USER':
+    return {user:action.user};
+  default:
+    return state;
+  }
+}
 
   // Initialize Firebase
   var config = {
@@ -14,6 +26,8 @@ import firebase from 'firebase';
   firebase.initializeApp(config);
 
 ReactDOM.render(
-  <App />,
+<Provider store={createStore(dispatch,{})}>
+  <App />
+</Provider>,
   document.getElementById('root')
 );
