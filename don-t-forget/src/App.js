@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import AppCarousel from './AppCarousel';
 import AppNavBar from './AppNavBar';
 import {connect} from 'react-redux';
+import BigCalendar from 'react-big-calendar';
+import moment from 'moment';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+
+BigCalendar.momentLocalizer(moment);
 
 class App extends Component {
 
@@ -11,7 +16,10 @@ renderCarousel(){
         return(
           <AppCarousel/>
         );
-      }
+    }else{
+      return(<BigCalendar events={[]}/>);
+    }
+
   }
 
 render() {
