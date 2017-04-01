@@ -5,6 +5,7 @@ import './css/App.css';
 import logo from '../public/Remember.png';
 import firebase from 'firebase';
 import {connect} from 'react-redux';
+import AppMenu from './AppMenu';
 
 class AppNavBar extends Component {
 
@@ -36,12 +37,26 @@ class AppNavBar extends Component {
       const { user } = this.props;
         if (user) {
             return (
-                <Button bsSize="large" bsStyle="info" onClick={this.logout}>Sign Out</Button>
+            <div>
+              <AppMenu/>
+              <Nav pullRight>
+                  <NavItem>
+                      <Button bsStyle="info" onClick={this.logout}>Sign Out</Button>
+                  </NavItem>
+              </Nav>
+            </div>
             );
 
         } else {
             return (
+            <div>
+              <Nav pullRight>
+                  <NavItem>
                 <Button bsSize="large" bsStyle="info" onClick={this.login}>Sign In</Button>
+              </NavItem>
+              </Nav>
+            </div>
+
             );
         }
 
@@ -58,17 +73,13 @@ class AppNavBar extends Component {
                     <Navbar.Header>
                         <img height="100%" width="70%" src={logo} alt="logo"/>
                     </Navbar.Header>
-                    <Nav pullRight>
-                        <NavItem>
-                            {this.renderButton()}
-                        </NavItem>
-                    </Nav>
                     <Nav className="App">
                         <NavItem>
                             <h1 className="App">
                                 Are you forgetting something?</h1>
                         </NavItem>
                     </Nav>
+                    {this.renderButton()}
                 </Navbar>
             </div>
 
