@@ -2,18 +2,36 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import firebase from 'firebase';
-import { createStore } from 'redux';
+import { createStore,combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
-var dispatch=function (state, action) {
+
+var user= function (state=null, action) {
 debugger;
   switch (action.type) {
   case 'ADD_USER':
     return {user:action.user};
+  case 'DELETE_USER':
+      return null;
   default:
     return state;
   }
 }
+
+var events=function (state=[], action) {
+debugger;
+  switch (action.type) {
+  case 'ADD_EVENT':
+    return state.concat([ action.event ]);
+  default:
+    return state;
+  }
+}
+
+var dispatch=combineReducers({
+  user,
+  events
+})
 
   // Initialize Firebase
   var config = {
@@ -26,7 +44,7 @@ debugger;
   firebase.initializeApp(config);
 
 ReactDOM.render(
-<Provider store={createStore(dispatch,{})}>
+<Provider store={createStore(dispatch)}>
   <App />
 </Provider>,
   document.getElementById('root')

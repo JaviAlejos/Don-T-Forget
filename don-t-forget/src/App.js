@@ -4,6 +4,8 @@ import AppNavBar from './AppNavBar';
 import AppCalendar from './AppCalendar';
 import {connect} from 'react-redux';
 
+
+
 class App extends Component {
 
 renderCarousel(){

@@ -12,16 +12,16 @@ class AppMenu extends Component {
 
                           <ButtonToolbar>
                               <Dropdown id="dropdown-custom-1">
-                                <Dropdown.Toggle>
+                                <Dropdown.Toggle bsStyle="success">
                                   Memory
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
                                   <MenuItem eventKey="1">PassWords</MenuItem>
                                   <MenuItem eventKey="2">Birthdays</MenuItem>
                                   <MenuItem eventKey="3">Shopping List</MenuItem>
-                                  {/*<MenuItem eventKey="3" active>Shopping List</MenuItem>
+                                  {/*<MenuItem eventKey="3" active>Shopping List</MenuItem>*/}
                                   <MenuItem divider />
-                                  <MenuItem eventKey="4">Separated link</MenuItem>*/}
+                                  <MenuItem eventKey="4">Contact Us</MenuItem>
                                 </Dropdown.Menu>
                               </Dropdown>
                               </ButtonToolbar>

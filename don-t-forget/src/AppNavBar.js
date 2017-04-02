@@ -20,9 +20,9 @@ class AppNavBar extends Component {
     }
 
     logout() {
-        const { addUser } = this.props;
+        const { deleteUser } = this.props;
         firebase.auth().signOut().then(result => console.log(`${result.user.email} ha cerrado sesión`)).catch(error => console.log(`${error.code}:${error.message}`));
-        addUser("");
+        deleteUser(null);
     }
 
     componentWillMount() {
@@ -34,6 +34,7 @@ class AppNavBar extends Component {
     }
 
     renderButton() {
+      debugger;
       const { user } = this.props;
         if (user) {
             return (
@@ -100,9 +101,14 @@ var mapDispatchToProps = function(dispatch) {
       dispatch({
         type: 'ADD_USER',
         user
-      })
+      })},
+      deleteUser: function(user) {
+        dispatch({
+          type: 'DELETE_USER',
+          user
+        })
     }
-  }
-}
 
+}
+}
 export default connect(mapStateToProps,mapDispatchToProps)(AppNavBar);
