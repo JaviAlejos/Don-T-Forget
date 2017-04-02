@@ -23,6 +23,8 @@ debugger;
   switch (action.type) {
   case 'ADD_EVENT':
     return state.concat([ action.event ]);
+    case 'DELETE_EVENT':
+      return state.filter(event => event.title!=action.event.title); //también se puede con splice
   default:
     return state;
   }
