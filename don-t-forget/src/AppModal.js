@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './css/App.css';
 import {connect} from 'react-redux';
-import {Modal,Button} from 'react-bootstrap';
+import {Modal,Button,Glyphicon} from 'react-bootstrap';
 
 
 class AppModal extends Component {
@@ -9,45 +9,28 @@ class AppModal extends Component {
   constructor() {
       super();
       this.delete=this.delete.bind(this);
-      this.edit=this.edit.bind(this);
-    }
+      }
 
 delete(){
   const { deleteEvent } =this.props;
   const {showModalDialog , close} = this.props;
   const event=showModalDialog.event;
-  const isDelete = confirm(`delete ${event.title}?`);
+  const isDelete = confirm("Are you sure?");
     if (isDelete)
         deleteEvent(event);
   close();
 
 }
 
-edit(){
-  //const { editEvent } =this.props;
-  const {showModalDialog , close} = this.props;
-  const event=showModalDialog.event;
-
-
-}
-
 
 renderForm() {
   const {showModalDialog} = this.props;
-debugger;
-  /*const myEvent = {
-      'title': title,
-      'allDay': allDay,
-      'start': slotInfo.start,
-      'end': slotInfo.end
-  }*/
 
 if (showModalDialog.event!="")
   return(
 <div>
-    <h4>{showModalDialog.event.title}</h4>
-    <p>{showModalDialog.event.start.toLocaleString()}</p>
-    <p>{showModalDialog.event.end.toLocaleString()}</p>
+    <p><Glyphicon glyph="glyphicon glyphicon-calendar" /><span>  From   </span><Glyphicon glyph="glyphicon glyphicon-arrow-right" />    {showModalDialog.event.start.toLocaleString()}</p>
+    <p><Glyphicon glyph="glyphicon glyphicon-time" /><span>  To   </span><Glyphicon glyph="glyphicon glyphicon-arrow-right" />    {showModalDialog.event.end.toLocaleString()}</p>
 </div>
 
 
@@ -59,14 +42,13 @@ if (showModalDialog.event!="")
         return (
           /* My Modal Dialog */
 <div>
-  <Modal show={showModalDialog.showModal} onHide={close}>
+  <Modal show={showModalDialog.showModal} onHide={close} bsSize="small">
     <Modal.Header closeButton>
-      <Modal.Title>Selected Event</Modal.Title>
+      <Modal.Title>{showModalDialog.event.title}</Modal.Title>
     </Modal.Header>
     <Modal.Body>
       {this.renderForm()}
-      <Button onClick={this.edit}>Edit</Button>
-      <Button onClick={this.delete}>Delete</Button>
+      <Button onClick={this.delete}> <Glyphicon glyph="glyphicon glyphicon-trash" /> Delete</Button>
       <Button onClick={close}>Close</Button>
     </Modal.Body>
   </Modal>
@@ -75,14 +57,6 @@ if (showModalDialog.event!="")
 );
 }
 }
-
-
-var mapStateToProps=function(state) {
-  return {
-    events:state.events
-  }
-}
-
 
 var mapDispatchToProps = function(dispatch) {
   return {
@@ -95,4 +69,4 @@ var mapDispatchToProps = function(dispatch) {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(AppModal);
+export default connect(null,mapDispatchToProps)(AppModal);

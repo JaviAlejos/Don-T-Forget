@@ -60,8 +60,6 @@ class AppCalendar extends Component {
          <BigCalendar selectable defaultView='week' onSelectSlot={this.selectEvent} onSelectEvent={this.showAppModal} className="Calendar" events={events} />
       </div>
 
-        /*onSelectEvent={event => alert()}
-                     */
         );
     }
 }
