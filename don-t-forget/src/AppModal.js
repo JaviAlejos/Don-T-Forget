@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './css/App.css';
 import {connect} from 'react-redux';
 import {Modal,Button,Glyphicon} from 'react-bootstrap';
+import firebase from 'firebase';
 
 
 class AppModal extends Component {
@@ -12,13 +13,27 @@ class AppModal extends Component {
       }
 
 delete(){
-  const { deleteEvent } =this.props;
   const {showModalDialog , close} = this.props;
   const event=showModalDialog.event;
   const isDelete = confirm("Are you sure?");
     if (isDelete)
-        deleteEvent(event);
+        this.deleteEvent(event);
   close();
+
+}
+
+deleteEvent(event){
+const { deleteEventFromState } =this.props;
+
+//delete from firebase database
+const ref = firebase.database().ref(`events/${event.idEvent}`);
+ref.remove();
+
+
+deleteEventFromState(event);
+
+
+
 
 }
 
@@ -60,7 +75,7 @@ if (showModalDialog.event!="")
 
 var mapDispatchToProps = function(dispatch) {
   return {
-    deleteEvent: function(event) {
+    deleteEventFromState: function(event) {
       dispatch({
         type: 'DELETE_EVENT',
         event
