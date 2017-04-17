@@ -8,20 +8,46 @@ import {connect} from 'react-redux';
 
 class App extends Component {
 
-renderCarousel(){
+constructor(){
+  super();
+  this.state={pag:""};
+  this.refreshState=this.refreshState.bind(this);
+}
+
+refreshState(pag){
+  this.setState({pag});
+}
+
+
+renderApp(){
   const { user } = this.props;
 
     if (!user)
         return(<AppCarousel/>);
-    else
-      return(<AppCalendar/>);
+    else{
+
+      switch (this.state.pag) {
+      case 'passwords':
+        return;
+      case 'birthdays':
+        return;
+      case 'shopping':
+        return;
+      case 'contact':
+        return;
+      default:
+        return(<AppCalendar/>);
+      }
+
+    }
+
 }
 
 render() {
     return (
 <div>
-      <AppNavBar/>
-      {this.renderCarousel()}
+      <AppNavBar refreshState={this.refreshState} now={this.state.pag}/>
+      {this.renderApp()}
 </div>
 
     );

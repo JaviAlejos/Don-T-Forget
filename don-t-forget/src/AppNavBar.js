@@ -20,10 +20,11 @@ class AppNavBar extends Component {
     }
 
     logout() {
-        const { deleteUser, deleteEvents } = this.props;
+        const { deleteUser, deleteEvents,refreshState } = this.props;
         firebase.auth().signOut().then(result => console.log(`${result.user.email} ha cerrado sesión`)).catch(error => console.log(`${error.code}:${error.message}`));
         deleteUser();
         deleteEvents();
+        refreshState("");
     }
 
     componentWillMount() {
@@ -36,11 +37,11 @@ class AppNavBar extends Component {
 
     renderButton() {
       debugger;
-      const { user } = this.props;
+      const { user,refreshState,now } = this.props;
         if (user) {
             return (
             <div>
-              <AppMenu/>
+              <AppMenu refreshState={refreshState} now={now}/>
               <Nav pullRight>
                   <NavItem>
                       <Button bsStyle="info" onClick={this.logout}>Sign Out</Button>
@@ -65,6 +66,7 @@ class AppNavBar extends Component {
     }
 
     render() {
+      const { refreshState } = this.props;
         return (
 
             <div>
@@ -77,7 +79,7 @@ class AppNavBar extends Component {
                     </Navbar.Header>
                     <Nav className="App">
                         <NavItem>
-                            <h1 className="App">
+                            <h1 className="App" onClick={()=>refreshState("")}>
                                 Are you forgetting something?</h1>
                         </NavItem>
                     </Nav>
