@@ -22,24 +22,27 @@ class AppCalendar extends Component {
     }
 
     initializeDatabase(props){
-      // Find all events whose user is me.
-      const {user,addEventToState} = props;
-      const ref = firebase.database().ref("events");
-      ref.orderByChild("user").equalTo(user.user.email).on("child_added", snapshot=>{
+      const {user,addEventToState,events} = props;
+      if(!events.length){
+        // Find all events whose user is me.
+        const ref = firebase.database().ref("events");
+        ref.orderByChild("user").equalTo(user.user.email).on("child_added", snapshot=>{
 
-      //Add Event to the redux state
-        const start=new Date(moment(snapshot.child("start").val(),"DD-MM-YYYY HH:mm"));
-        const end=new Date(moment(snapshot.child("end").val(),"DD-MM-YYYY HH:mm"));
-        const myEvent = {
-              'title': snapshot.child("title").val(),
-              'allDay': snapshot.child("allDay").val(),
-              'start': start,
-              'end': end,
-              'idEvent': snapshot.child("idEvent").val()
-              }
+          //Add Event to the redux state
+          const start=new Date(moment(snapshot.child("start").val(),"DD-MM-YYYY HH:mm"));
+          const end=new Date(moment(snapshot.child("end").val(),"DD-MM-YYYY HH:mm"));
+          const myEvent = {
+                'title': snapshot.child("title").val(),
+                'allDay': snapshot.child("allDay").val(),
+                'start': start,
+                'end': end,
+                'idEvent': snapshot.child("idEvent").val()
+                }
 
-        addEventToState(myEvent);
-      });
+          addEventToState(myEvent);
+        });
+
+      }
     }
 
     closeAppModal() {

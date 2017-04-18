@@ -36,7 +36,6 @@ class AppNavBar extends Component {
     }
 
     renderButton() {
-      debugger;
       const { user,refreshState,now } = this.props;
         if (user) {
             return (

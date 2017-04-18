@@ -6,7 +6,6 @@ import './css/App.css';
 class AppMenu extends Component {
 
 onCickEvent(pag){
-  debugger;
 const {refreshState}=this.props;
 refreshState(pag);
 
