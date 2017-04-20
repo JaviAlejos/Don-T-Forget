@@ -11,3 +11,13 @@
 .Calendar {
   height: 420px !important;
 }
+
+.AppThumbnail {
+  margin-left: 50px;
+  margin-top: 0;
+  padding: 0;
+}
+
+.AppThumbnailInput {
+  width: 70px;
+}

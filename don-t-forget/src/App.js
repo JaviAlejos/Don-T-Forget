@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AppCarousel from './AppCarousel';
 import AppNavBar from './AppNavBar';
 import AppCalendar from './AppCalendar';
+import AppThumbnail from './AppThumbnail';
 import {connect} from 'react-redux';
 
 
@@ -28,7 +29,7 @@ renderApp(){
 
       switch (this.state.pag) {
       case 'passwords':
-        return;
+        return <AppThumbnail/>;
       case 'birthdays':
         return;
       case 'shopping':

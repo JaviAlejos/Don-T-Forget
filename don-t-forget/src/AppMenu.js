@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {NavItem, Nav,ButtonToolbar,Dropdown,MenuItem} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import './css/App.css';
 
 class AppMenu extends Component {
 
