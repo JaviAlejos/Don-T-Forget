@@ -12,7 +12,9 @@ class AppThumbnail extends Component {
         <Grid>
             <Row>
             <Col xs={3} md={3}>
-              <Thumbnail src="../icons/Google.png" alt="70x70">
+          {/*    <Thumbnail src="../icons/Undefined.png" alt="by Maklay62">*/}
+          {/*<Thumbnail src="../icons/Plus.png" alt="by tFity">*/}
+          <Thumbnail src="../icons/Google.png" alt="70x70">
                 <h3 className="AppThumbnail">Google</h3>
                 <p>
                    <input className="AppThumbnailInput" type="text" placeholder="Password" value="12345678"/>
