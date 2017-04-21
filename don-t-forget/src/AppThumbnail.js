@@ -13,7 +13,12 @@ class AppThumbnail extends Component {
             <Row>
             <Col xs={3} md={3}>
           {/*    <Thumbnail src="../icons/Undefined.png" alt="by Maklay62">*/}
-          {/*<Thumbnail src="../icons/Plus.png" alt="by tFity">*/}
+          {/*<Thumbnail src="../icons/Plus.png" alt="by tFity">
+          GitHub --> by OpenClipart-Vectors
+          Twitter --> by lonaug
+          Facebook $$ Google Instagram --> by wikimedia commons
+
+          */}
           <Thumbnail src="../icons/Google.png" alt="70x70">
                 <h3 className="AppThumbnail">Google</h3>
                 <p>
