@@ -3,7 +3,7 @@ import zxcvbn from "zxcvbn";
 import generator from "generate-password";
 import {Glyphicon,OverlayTrigger,Popover,Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import './css/App.css';
+import './css/components/AppPassword.css';
 
 class AppPassword extends Component {
 

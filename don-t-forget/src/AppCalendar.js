@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './css/App.css';
+import './css/components/AppCalendar.css';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';

@@ -1,0 +1,36 @@
+.AppThumbnail {
+  margin-left: 50px;
+  margin-top: 0;
+  padding: 0;
+  width: 40%;
+}
+
+.AppThumbnailSelect {
+  margin-left: 50px;
+  margin-top: 9px;
+  margin-bottom: 9px;
+  padding: 0;
+  width: 45%;
+}
+
+.AppThumbnailInput {
+  width: 70px;
+}
+
+.AppThumbnailButton {
+  margin-left: 70px;
+  margin-top: 0;
+  padding: 0;
+}
+
+.AppThumbnailButtonAdd {
+  margin-left: 35px;
+  margin-top: 0;
+  padding: 0;
+}
+
+.AppThumbnailRadio{
+  margin-left: 50%;
+  margin-top: 1%;
+  padding: 0;
+}
