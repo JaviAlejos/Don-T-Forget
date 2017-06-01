@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AppCarousel from './AppCarousel';
 import AppNavBar from './AppNavBar';
 import AppCalendar from './AppCalendar';
-import AppThumbnail from './AppThumbnail';
+import AppThumbnaiList from './AppThumbnaiList';
 import {connect} from 'react-redux';
 
 
@@ -29,7 +29,7 @@ renderApp(){
 
       switch (this.state.pag) {
       case 'passwords':
-        return <AppThumbnail/>;
+        return <AppThumbnaiList/>;
       case 'birthdays':
         return;
       case 'shopping':
