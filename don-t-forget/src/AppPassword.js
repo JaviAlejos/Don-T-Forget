@@ -31,7 +31,6 @@ class AppPassword extends Component {
       uppercase="true";
 
     const pass=generator.generate({ length,numbers,symbols,uppercase });
-  debugger;
     this.setState({password:pass});
   }
 
@@ -84,7 +83,7 @@ renderInput(){
     );
   }
 
-  render() {
+render() {
     const popover=this.popoverGeneratePassword();
     return (
       <div>

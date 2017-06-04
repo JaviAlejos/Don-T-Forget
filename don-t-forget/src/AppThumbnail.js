@@ -12,15 +12,18 @@ class AppThumbnail extends Component {
       const tooltip = (<Tooltip id="tooltip"><strong>{name}</strong></Tooltip>);
 
       return (
-          <OverlayTrigger placement="top" overlay={tooltip}>
-            <Thumbnail src={`../icons/${name}.png`} alt="70x70">
-                <p>
-                  <AppPassword value={value} show={show} className="AppThumbnail"/>
-                </p>
-                <Button bsStyle="primary" bsSize="small" className="AppThumbnailButton">Save</Button>
+          <Thumbnail >
+              <p>
+                <OverlayTrigger placement="top" overlay={tooltip}>
+                  <img src={`../icons/${name}.png`} alt="70x70" className="AppThumbnailImage"/>
+                </OverlayTrigger>
+              </p>
+              <p>
+                <AppPassword value={value} show={show} className="AppThumbnailCommon AppThumbnail"/>
+              </p>
+                <Button bsStyle="primary" bsSize="small" className="AppThumbnailCommon AppThumbnailButton">Save</Button>
 
               </Thumbnail>
-          </OverlayTrigger>
 
               /*<Thumbnail src="../icons/Plus.png" alt="by tFity">
               GitHub --> by Bo-Yi Wu

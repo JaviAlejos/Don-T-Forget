@@ -1,7 +1,15 @@
-.AppThumbnail {
-  margin-left: 50px;
+.AppThumbnailCommon {
+  margin-bottom: 0px;
   margin-top: 0;
   padding: 0;
+}
+
+.AppThumbnailImage {
+  margin-left: 55px;
+}
+
+.AppThumbnail{
+  margin-left: 50px;
   width: 45%;
 }
 
@@ -11,18 +19,9 @@
 
 .AppThumbnailButton {
   margin-left: 70px;
-  margin-top: 0;
-  padding: 0;
-}
-
-.AppThumbnailButtonAdd {
-  margin-left: 35px;
-  margin-top: 0;
-  padding: 0;
 }
 
 .AppThumbnailRadio{
   margin-left: 50%;
   margin-top: 1%;
-  padding: 0;
 }
