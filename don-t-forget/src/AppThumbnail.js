@@ -9,19 +9,26 @@ class AppThumbnail extends Component {
 
     render() {
       const {show,value,name}=this.props;
+      const names=["Twitter","GitHub","Instagram","Facebook","Google"];
+      let varname="Undefined";
+
+      if (names.indexOf(name)!=-1)
+          varname=name;
+
       const tooltip = (<Tooltip id="tooltip"><strong>{name}</strong></Tooltip>);
 
       return (
           <Thumbnail >
               <p>
                 <OverlayTrigger placement="top" overlay={tooltip}>
-                  <img src={`../icons/${name}.png`} alt="70x70" className="AppThumbnailImage"/>
+                  <img src={`../icons/${varname}.png`} alt="70x70" className="AppThumbnailImage"/>
                 </OverlayTrigger>
               </p>
               <p>
                 <AppPassword value={value} show={show} className="AppThumbnailCommon AppThumbnail"/>
               </p>
                 <Button bsStyle="primary" bsSize="small" className="AppThumbnailCommon AppThumbnailButton">Save</Button>
+                <Button bsStyle="primary" bsSize="small" className="AppThumbnailCommon">Delete</Button>
 
               </Thumbnail>
 

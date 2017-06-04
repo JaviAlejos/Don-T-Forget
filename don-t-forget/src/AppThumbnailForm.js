@@ -3,20 +3,25 @@ import {Thumbnail,Button,OverlayTrigger,Tooltip} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import AppPassword from './AppPassword';
 import './css/components/AppThumbnail/AppThumbnail.css';
+import {connect} from 'react-redux';
 
 
 class AppThumbnailForm extends Component {
 
   constructor(props) {
      super(props);
-     this.state = {value: 'Google', password:''};
+     this.state = {value: 'Google',password:''};
      this.handleChange = this.handleChange.bind(this);
      this.otherName = this.otherName.bind(this);
-     this.handleChangePassword = this.handleChangePassword.bind(this);
+     this.handleFieldChange = this.handleFieldChange.bind(this);
   }
 
   handleChange(event) {
-   this.setState({value: event.target.value, password:this.state.password});
+   this.setState({value: event.target.value,password:this.state.password});
+  }
+
+  handleFieldChange(password) {
+    this.setState({value:this.state.value,password});
   }
 
   otherName(event){
@@ -33,7 +38,9 @@ class AppThumbnailForm extends Component {
 
 
   addPassword(namePass){
-
+debugger;
+    const pass=this.state.password;
+    this.props.addPass({namePass,pass});
   }
 
     render() {
@@ -49,7 +56,7 @@ class AppThumbnailForm extends Component {
               </OverlayTrigger>
             </p>
             <p>
-              <AppPassword show={show} className="AppThumbnailCommon AppThumbnail" didMount={this.handleChangePassword}/>
+              <AppPassword show={show} className="AppThumbnailCommon AppThumbnail" handleFieldChange={this.handleFieldChange} />
             </p>
             <select value={this.state.value} onChange={this.handleChange} className="AppThumbnailCommon AppThumbnail">
               <option value="Google">Google</option>
@@ -71,4 +78,14 @@ class AppThumbnailForm extends Component {
     }
 }
 
-export default AppThumbnailForm;
+
+var mapDispatchToProps = function(dispatch) {
+  return {
+    addPass: function(password) {
+      dispatch({
+        type: 'ADD_PASSWORD',
+        password
+      })}
+    }
+}
+export default connect(null,mapDispatchToProps)(AppThumbnailForm);

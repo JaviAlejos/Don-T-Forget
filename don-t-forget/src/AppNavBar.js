@@ -20,10 +20,11 @@ class AppNavBar extends Component {
     }
 
     logout() {
-        const { deleteUser, deleteEvents,refreshState } = this.props;
+        const { deleteUser, deleteEvents,deletePasswords, refreshState } = this.props;
         firebase.auth().signOut().then(result => console.log(`${result.user.email} ha cerrado sesión`)).catch(error => console.log(`${error.code}:${error.message}`));
         deleteUser();
         deleteEvents();
+        deletePasswords();
         refreshState("");
     }
 
@@ -112,7 +113,12 @@ var mapDispatchToProps = function(dispatch) {
         dispatch({
             type: 'DELETE_EVENTS'
           })
-    }
+    },
+  deletePasswords: function() {
+    dispatch({
+        type: 'DELETE_PASSWORDS'
+      })
+}
 }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(AppNavBar);

@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 
 
 var user= function (state=null, action) {
-debugger;
   switch (action.type) {
   case 'ADD_USER':
     return {user:action.user};
@@ -19,7 +18,6 @@ debugger;
 }
 
 var events=function (state=[], action) {
-debugger;
   switch (action.type) {
   case 'ADD_EVENT':
     return state.concat([ action.event ]);
@@ -32,9 +30,31 @@ debugger;
   }
 }
 
+
+
+var passwords=function (state=[], action) {
+  debugger;
+  switch (action.type) {
+  case 'ADD_PASSWORD':
+      const exist = state.findIndex(pass => pass.namePass === action.password.namePass && pass.pass === action.password.pass);
+      if(exist)
+        return state.concat([ action.password ]);
+        else
+          return state;
+  case 'DELETE_PASSWORD':
+    return;// state.filter(event => event.idEvent!=action.event.idEvent); //también se puede con splice
+  case 'DELETE_PASSWORDS':
+    return [];
+  default:
+    return state;
+  }
+}
+
+
 var dispatch=combineReducers({
   user,
-  events
+  events,
+  passwords
 })
 
   // Initialize Firebase

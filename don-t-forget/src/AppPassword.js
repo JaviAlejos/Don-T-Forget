@@ -21,6 +21,8 @@ class AppPassword extends Component {
 
   handlePassChange = (event) => {
     this.setState({ password: event.target.value });
+    if (this.props.handleFieldChange!=undefined)
+      this.props.handleFieldChange(event.target.value);
   };
 
   generatePassword(){
@@ -32,6 +34,8 @@ class AppPassword extends Component {
 
     const pass=generator.generate({ length,numbers,symbols,uppercase });
     this.setState({password:pass});
+    if (this.props.handleFieldChange!=undefined)
+      this.props.handleFieldChange(pass);
   }
 
   popoverGeneratePassword(){
@@ -87,7 +91,7 @@ render() {
     const popover=this.popoverGeneratePassword();
     return (
       <div>
-        <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
+        <OverlayTrigger delayHide="700" placement="bottom" overlay={popover}>
           {this.renderInput()}
         </OverlayTrigger>
       </div>
