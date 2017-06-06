@@ -19,12 +19,6 @@ showPassword(event){
   this.setState({ password:!this.state.password});
 }
 
-renderPasswordList(){
-  debugger;
-const {passwords}=this.props;
-
-}
-
 
     render() {
       return (

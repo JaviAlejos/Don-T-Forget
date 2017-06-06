@@ -3,11 +3,42 @@ import {Thumbnail,Button,OverlayTrigger,Tooltip} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import AppPassword from './AppPassword';
 import './css/components/AppThumbnail/AppThumbnail.css';
+import {connect} from 'react-redux';
+
 
 
 class AppThumbnail extends Component {
 
-    render() {
+  constructor(props) {
+     super(props);
+     this.state = {password:''};
+     this.handleFieldChange = this.handleFieldChange.bind(this);
+     this.editPassword = this.editPassword.bind(this);
+     this.deletePassword = this.deletePassword.bind(this);
+  }
+
+handleFieldChange(password) {
+    this.setState({value:this.state.value,password});
+  }
+
+editPassword(){
+  const {name,editPass}=this.props;
+  const edit = confirm("Are you sure?");
+    if (edit)
+        editPass({namePass:name,pass:this.state.password});
+
+
+}
+
+deletePassword(){
+  const {name,deletePass}=this.props;
+  const erase = confirm("Are you sure?");
+    if (erase)
+      deletePass({namePass:name,pass:this.state.password});
+
+}
+
+render() {
       const {show,value,name}=this.props;
       const names=["Twitter","GitHub","Instagram","Facebook","Google"];
       let varname="Undefined";
@@ -25,10 +56,10 @@ class AppThumbnail extends Component {
                 </OverlayTrigger>
               </p>
               <p>
-                <AppPassword value={value} show={show} className="AppThumbnailCommon AppThumbnail"/>
+                <AppPassword value={value} show={show} className="AppThumbnailCommon AppThumbnail" handleFieldChange={this.handleFieldChange}/>
               </p>
-                <Button bsStyle="primary" bsSize="small" className="AppThumbnailCommon AppThumbnailButton">Save</Button>
-                <Button bsStyle="primary" bsSize="small" className="AppThumbnailCommon">Delete</Button>
+                <Button bsStyle="primary" bsSize="small" className="AppThumbnailCommon AppThumbnailButton" onClick={this.editPassword}>Save</Button>
+                <Button bsStyle="primary" bsSize="small" className="AppThumbnailCommon" onClick={this.deletePassword}>Delete</Button>
 
               </Thumbnail>
 
@@ -44,4 +75,20 @@ class AppThumbnail extends Component {
     }
 }
 
-export default AppThumbnail;
+
+
+var mapDispatchToProps = function(dispatch) {
+  return {
+    editPass: function(password) {
+      dispatch({
+        type: 'UPDATE_PASSWORD',
+        password
+      })},
+      deletePass: function(password) {
+        dispatch({
+          type: 'DELETE_PASSWORD',
+          password
+        })},
+    }
+}
+export default connect(null,mapDispatchToProps)(AppThumbnail);

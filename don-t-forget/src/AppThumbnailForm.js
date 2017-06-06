@@ -38,7 +38,6 @@ class AppThumbnailForm extends Component {
 
 
   addPassword(namePass){
-debugger;
     const pass=this.state.password;
     this.props.addPass({namePass,pass});
   }
@@ -72,7 +71,6 @@ debugger;
               GitHub --> by OpenClipart-Vectors
               Twitter --> by lonaug
               Facebook $$ Google Instagram --> by wikimedia commons
-
               */
         );
     }

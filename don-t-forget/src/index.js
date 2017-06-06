@@ -36,15 +36,17 @@ var passwords=function (state=[], action) {
   debugger;
   switch (action.type) {
   case 'ADD_PASSWORD':
-      const exist = state.findIndex(pass => pass.namePass === action.password.namePass && pass.pass === action.password.pass);
+      const exist = state.findIndex(pass => pass.namePass === action.password.namePass);
       if(exist)
         return state.concat([ action.password ]);
         else
           return state;
   case 'DELETE_PASSWORD':
-    return;// state.filter(event => event.idEvent!=action.event.idEvent); //también se puede con splice
+    return state.filter(pass => pass.namePass!=action.password.namePass); //también se puede con splice
   case 'DELETE_PASSWORDS':
     return [];
+  case 'UPDATE_PASSWORD':
+      return state.filter(pass => pass.namePass!=action.password.namePass).concat([ action.password ]);
   default:
     return state;
   }
