@@ -55,7 +55,7 @@ class AppCalendar extends Component {
 
 
     addEvent(slotInfo,title,allDay){
-      const {addEventToState,user} = this.props;
+      const {user} = this.props;
       //Add event to the firebase database
       const refer=firebase.database().ref('events');
       const id=refer.push();

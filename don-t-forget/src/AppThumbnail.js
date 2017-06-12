@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import AppPassword from './AppPassword';
 import './css/components/AppThumbnail/AppThumbnail.css';
 import {connect} from 'react-redux';
+import firebase from 'firebase';
 
 
 
@@ -22,20 +23,26 @@ handleFieldChange(password) {
   }
 
 editPassword(){
-  const {name,editPass}=this.props;
+  const {name,editPass,passwords}=this.props;
   const edit = confirm("Are you sure?");
     if (edit)
         editPass({namePass:name,pass:this.state.password});
 
+    //update from firebase database
+      const ref = firebase.database().ref(`passwords/${passwords.filter(pass => pass.namePass==name)[0].idPassword}`);
+      ref.update({password:this.state.password});
 
 }
 
 deletePassword(){
-  const {name,deletePass}=this.props;
+  const {name,deletePass,passwords}=this.props;
   const erase = confirm("Are you sure?");
     if (erase)
       deletePass({namePass:name,pass:this.state.password});
 
+    //delete from firebase database
+      const ref = firebase.database().ref(`passwords/${passwords.filter(pass => pass.namePass==name)[0].idPassword}`);
+      ref.remove();
 }
 
 render() {
@@ -75,7 +82,9 @@ render() {
     }
 }
 
-
+var mapStateToProps = function(state) {
+    return {passwords: state.passwords}
+}
 
 var mapDispatchToProps = function(dispatch) {
   return {
@@ -91,4 +100,4 @@ var mapDispatchToProps = function(dispatch) {
         })},
     }
 }
-export default connect(null,mapDispatchToProps)(AppThumbnail);
+export default connect(mapStateToProps,mapDispatchToProps)(AppThumbnail);
