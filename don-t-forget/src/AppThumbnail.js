@@ -52,7 +52,6 @@ render() {
 
       if (names.indexOf(name)!=-1)
           varname=name;
-
       const tooltip = (<Tooltip id="tooltip"><strong>{name}</strong></Tooltip>);
 
       return (
@@ -79,6 +78,7 @@ render() {
               */
 
         );
+
     }
 }
 

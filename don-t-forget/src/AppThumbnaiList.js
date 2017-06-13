@@ -31,10 +31,11 @@ showPassword(event){
 
               {
                 this.props.passwords.map(password=>{
-                  return (
-                    <Col xs={3} md={3}>
-                    <AppThumbnail show={this.state.password} value={password.pass} name={password.namePass} />
-                    </Col>
+                    if (password.namePass!='')
+                      return (
+                        <Col xs={3} md={3}>
+                          <AppThumbnail show={this.state.password} value={password.pass} name={password.namePass} />
+                        </Col>
                   );
                 })}
 

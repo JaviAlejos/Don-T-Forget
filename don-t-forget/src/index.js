@@ -42,11 +42,26 @@ var passwords=function (state=[], action) {
         else
           return state;
   case 'DELETE_PASSWORD':
-    return state.filter(pass => pass.namePass!=action.password.namePass); //también se puede con splice
+    const ind = state.findIndex(pass => pass.namePass === action.password.namePass);
+    return state.map((item,index)=>{
+        if(index!=ind)
+          //This isn't the item we care about -- keep it as-is
+          return item;
+
+        return {'namePass' : '','pass': '','idPassword':''};
+    });
+
   case 'DELETE_PASSWORDS':
     return [];
   case 'UPDATE_PASSWORD':
-      return state.filter(pass => pass.namePass!=action.password.namePass).concat([ action.password ]);
+      const i = state.findIndex(pass => pass.namePass === action.password.namePass);
+      return state.map((item,index)=>{
+          if(index!=i)
+            //This isn't the item we care about -- keep it as-is
+            return item;
+
+          return {...item,...action.password};
+      });
   default:
     return state;
   }
