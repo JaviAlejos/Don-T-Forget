@@ -37,7 +37,7 @@ var passwords=function (state=[], action) {
   switch (action.type) {
   case 'ADD_PASSWORD':
       const exist = state.findIndex(pass => pass.namePass === action.password.namePass);
-      if(exist)
+      if(exist<0)
         return state.concat([ action.password ]);
         else
           return state;
@@ -47,7 +47,7 @@ var passwords=function (state=[], action) {
         if(index!=ind)
           //This isn't the item we care about -- keep it as-is
           return item;
-
+          //otherwise, this is the one we want
         return {'namePass' : '','pass': '','idPassword':''};
     });
 
@@ -59,7 +59,7 @@ var passwords=function (state=[], action) {
           if(index!=i)
             //This isn't the item we care about -- keep it as-is
             return item;
-
+            //otherwise, this is the one we want
           return {...item,...action.password};
       });
   default:
