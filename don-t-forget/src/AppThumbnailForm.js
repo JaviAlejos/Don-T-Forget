@@ -1,84 +1,34 @@
 import React, {Component} from 'react';
-import {Thumbnail,Button,OverlayTrigger,Tooltip} from 'react-bootstrap';
+import {Thumbnail,OverlayTrigger,Tooltip} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import AppPassword from './AppPassword';
-import './css/components/AppThumbnail/AppThumbnail.css';
+import './css/components/AppThumbnail.css';
 import {connect} from 'react-redux';
 import firebase from 'firebase';
+import AppModalThumbnail from './AppModalThumbnail';
 
 
 class AppThumbnailForm extends Component {
 
   constructor(props) {
      super(props);
-     this.initializeDatabase(props);
-     this.state = {value: 'Google',password:''};
+     this.state = {value: 'Google',showModal: false};
      this.handleChange = this.handleChange.bind(this);
-     this.otherName = this.otherName.bind(this);
-     this.handleFieldChange = this.handleFieldChange.bind(this);
-  }
-
-  initializeDatabase(props){
-    const {user,passwords} = props;
-    if(!passwords.length){
-      // Find all password whose user is me.
-      const ref = firebase.database().ref("passwords");
-      ref.orderByChild("user").equalTo(user.user.email).on("child_added", snapshot=>{
-
-        //Add password to the redux state
-      const myPassword = {
-              'namePass' : snapshot.child("value").val(),
-              'pass': snapshot.child("password").val(),
-              'idPassword': snapshot.child("idPassword").val()
-          };
-
-        this.props.addPass(myPassword);
-      });
+     this.closeAppModal = this.closeAppModal.bind(this);
+     this.showAppModal = this.showAppModal.bind(this);
 
     }
-  }
+
 
   handleChange(event) {
-   this.setState({value: event.target.value,password:this.state.password});
+   this.setState({value: event.target.value,showModal: this.state.showModal});
   }
 
-  handleFieldChange(password) {
-    this.setState({value:this.state.value,password});
+  closeAppModal() {
+      this.setState({value:this.state.value,showModal: false});
   }
 
-  otherName(event){
-    if (this.state.password.length<4)
-      alert("you need a password at least 4 characters long")
-    else {
-      if (this.state.value=="Other"){
-          const other = prompt("Please enter a name for your password", "Don't Forget");
-          if (other != null)
-              this.addPassword(other);
-            } else {
-                  const add = confirm("Are you sure?");
-                  if (add)
-                    this.addPassword(this.state.value);
-                  }
-        }
-    }
-
-
-addPassword(namePass){
-  const exist = this.props.passwords.findIndex(pass => pass.namePass === namePass);
-    if(exist<0){
-      const {user} = this.props;
-      //Add password to the firebase database
-      const refer=firebase.database().ref('passwords');
-      const id=refer.push();
-      const myPassword = {
-            'value' : namePass,
-            'password': this.state.password,
-            'idPassword':id.key,
-            'user':user.user.email
-        }
-
-      id.set(myPassword);
-    }
+  showAppModal(event) {
+      this.setState({value:this.state.value,showModal: true});
   }
 
     render() {
@@ -90,11 +40,11 @@ addPassword(namePass){
           <Thumbnail>
             <p>
               <OverlayTrigger placement="right" overlay={tooltip}>
-                <img src="../icons/Plus.png" alt="70x70"className="AppThumbnailImage" onClick={this.otherName}/>
+                <img src="../icons/Plus.png" alt="70x70"className="AppThumbnailImage" onClick={this.showAppModal}/>
               </OverlayTrigger>
             </p>
             <p>
-              <AppPassword show={show} className="AppThumbnailCommon AppThumbnail" handleFieldChange={this.handleFieldChange} />
+              <AppModalThumbnail showModalDialog={this.state} close={this.closeAppModal} add={true}/>
             </p>
             <select value={this.state.value} onChange={this.handleChange} className="AppThumbnailCommon AppThumbnail">
               <option value="Google">Google</option>
@@ -115,18 +65,4 @@ addPassword(namePass){
     }
 }
 
-
-var mapStateToProps = function(state) {
-    return {user:state.user,passwords: state.passwords}
-}
-
-var mapDispatchToProps = function(dispatch) {
-  return {
-    addPass: function(password) {
-      dispatch({
-        type: 'ADD_PASSWORD',
-        password
-      })}
-    }
-}
-export default connect(mapStateToProps,mapDispatchToProps)(AppThumbnailForm);
+export default AppThumbnailForm;

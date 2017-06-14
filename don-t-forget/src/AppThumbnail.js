@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
-import {Thumbnail,Button,OverlayTrigger,Tooltip} from 'react-bootstrap';
+import {Thumbnail,OverlayTrigger,Tooltip,Glyphicon} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import AppPassword from './AppPassword';
-import './css/components/AppThumbnail/AppThumbnail.css';
+import './css/components/AppPassword.css';
+import './css/components/AppThumbnail.css';
 import {connect} from 'react-redux';
 import firebase from 'firebase';
+import AppModalThumbnail from './AppModalThumbnail';
+
 
 
 
@@ -12,62 +14,78 @@ class AppThumbnail extends Component {
 
   constructor(props) {
      super(props);
-     this.state = {password:''};
-     this.handleFieldChange = this.handleFieldChange.bind(this);
-     this.editPassword = this.editPassword.bind(this);
      this.deletePassword = this.deletePassword.bind(this);
+     this.state = {value: this.props.name,showModal: false};
+     this.closeAppModal = this.closeAppModal.bind(this);
+     this.showAppModal = this.showAppModal.bind(this);
   }
 
-handleFieldChange(password) {
-    this.setState({value:this.state.value,password});
+  closeAppModal() {
+      this.setState({value:this.state.value,showModal: false});
   }
 
-editPassword(){
-  const {name,editPass,passwords}=this.props;
-  const edit = confirm("Are you sure?");
-    if (edit)
-        editPass({namePass:name,pass:this.state.password});
+  showAppModal() {
+      this.setState({value:this.state.value,showModal: true});
+  }
 
-    //update from firebase database
-      const ref = firebase.database().ref(`passwords/${passwords.filter(pass => pass.namePass==name)[0].idPassword}`);
-      ref.update({password:this.state.password});
-
-}
 
 deletePassword(){
   const {name,deletePass,passwords}=this.props;
   const erase = confirm("Are you sure?");
     if (erase)
-      deletePass({namePass:name,pass:this.state.password});
+      deletePass({namePass:name,pass:''});
 
     //delete from firebase database
       const ref = firebase.database().ref(`passwords/${passwords.filter(pass => pass.namePass==name)[0].idPassword}`);
       ref.remove();
 }
 
-render() {
-      const {show,value,name}=this.props;
-      const names=["Twitter","GitHub","Instagram","Facebook","Google"];
-      let varname="Undefined";
 
-      if (names.indexOf(name)!=-1)
-          varname=name;
-      const tooltip = (<Tooltip id="tooltip"><strong>{name}</strong></Tooltip>);
+render() {
+
+  const {name}=this.props;
+  const names=["Twitter","GitHub","Instagram","Facebook","Google"];
+  let varname="Undefined";
+
+  if (names.indexOf(name)!=-1)
+      varname=name;
+
+      const tooltipName = (<Tooltip id="tooltip"><strong>{name}</strong></Tooltip>);
+      const tooltipEdit = (<Tooltip id="tooltip"><strong>Edit Password</strong></Tooltip>);
+      const tooltipDelete = (<Tooltip id="tooltip"><strong>Delete Password</strong></Tooltip>);
+      const tooltipSend = (<Tooltip id="tooltip"><strong>Send an email with the password</strong></Tooltip>);
+
+
 
       return (
           <Thumbnail >
               <p>
-                <OverlayTrigger placement="top" overlay={tooltip}>
+                <OverlayTrigger placement="top" overlay={tooltipName}>
                   <img src={`../icons/${varname}.png`} alt="70x70" className="AppThumbnailImage"/>
                 </OverlayTrigger>
               </p>
-              <p>
-                <AppPassword value={value} show={show} className="AppThumbnailCommon AppThumbnail" handleFieldChange={this.handleFieldChange}/>
-              </p>
-                <Button bsStyle="primary" bsSize="small" className="AppThumbnailCommon AppThumbnailButton" onClick={this.editPassword}>Save</Button>
-                <Button bsStyle="primary" bsSize="small" className="AppThumbnailCommon" onClick={this.deletePassword}>Delete</Button>
 
-              </Thumbnail>
+              <AppModalThumbnail showModalDialog={this.state} close={this.closeAppModal} add={false}/>
+
+              <OverlayTrigger placement="top" overlay={tooltipSend}>
+                <span>
+                  <Glyphicon className="AppThumbnailButton GlyphiconOk" glyph="glyphicon glyphicon-envelope" />
+                </span>
+              </OverlayTrigger>
+
+              <OverlayTrigger placement="top" overlay={tooltipEdit}>
+                <span onClick={this.showAppModal}>
+                  <Glyphicon className="StandardComponent GlyphiconWarning" glyph="glyphicon glyphicon-pencil" />
+                </span>
+              </OverlayTrigger>
+
+              <OverlayTrigger placement="top" overlay={tooltipDelete}>
+                <span onClick={this.deletePassword}>
+                  <Glyphicon className="StandardComponent GlyphiconDanger" glyph="glyphicon glyphicon-remove" />
+                </span>
+              </OverlayTrigger>
+
+          </Thumbnail>
 
               /*<Thumbnail src="../icons/Plus.png" alt="by tFity">
               GitHub --> by Bo-Yi Wu
@@ -88,16 +106,12 @@ var mapStateToProps = function(state) {
 
 var mapDispatchToProps = function(dispatch) {
   return {
-    editPass: function(password) {
-      dispatch({
-        type: 'UPDATE_PASSWORD',
-        password
-      })},
       deletePass: function(password) {
         dispatch({
           type: 'DELETE_PASSWORD',
           password
-        })},
+        })}
     }
 }
+
 export default connect(mapStateToProps,mapDispatchToProps)(AppThumbnail);

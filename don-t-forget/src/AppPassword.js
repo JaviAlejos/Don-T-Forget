@@ -90,11 +90,9 @@ renderInput(){
 render() {
     const popover=this.popoverGeneratePassword();
     return (
-      <div>
         <OverlayTrigger delayHide={700} placement="bottom" overlay={popover}>
           {this.renderInput()}
         </OverlayTrigger>
-      </div>
     );
   }
 }
