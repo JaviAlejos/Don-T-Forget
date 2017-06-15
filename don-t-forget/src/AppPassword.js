@@ -48,7 +48,7 @@ class AppPassword extends Component {
 
 
 renderInput(){
-  const { show,className} =this.props;
+  const { show,className,classNameGlyphicon} =this.props;
   var component;
 
   const res=zxcvbn(this.state.password);
@@ -57,12 +57,12 @@ renderInput(){
   switch (score) {
     case 0:
     case 1:
-        component= <Glyphicon className="StandardComponent GlyphiconDanger" glyph="glyphicon glyphicon-remove" />; break;
+        component= <Glyphicon className={`StandardComponent GlyphiconDanger ${classNameGlyphicon}`} glyph="glyphicon glyphicon-remove"/>; break;
       case 2:
-        component= <Glyphicon className="StandardComponent GlyphiconWarning" glyph="glyphicon glyphicon-warning-sign" />; break;
+        component= <Glyphicon className={`StandardComponent GlyphiconWarning ${classNameGlyphicon}`} glyph="glyphicon glyphicon-warning-sign"/>; break;
       case 3:
       case 4:
-        component= <Glyphicon className="StandardComponent GlyphiconOk" glyph="glyphicon glyphicon-ok" />;break;
+        component= <Glyphicon className={`StandardComponent GlyphiconOk ${classNameGlyphicon}`}   glyph="glyphicon glyphicon-ok"/>;break;
     }
 
     let placeholder=""

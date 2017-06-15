@@ -28,7 +28,13 @@ class AppThumbnailForm extends Component {
   }
 
   showAppModal(event) {
-      this.setState({value:this.state.value,showModal: true});
+    const {passwords}=this.props;
+      const exist = passwords.findIndex(pass => pass.namePass === this.state.value);
+        if (exist<0){
+          this.setState({value:this.state.value,showModal: true});
+        }else {
+          alert("the password already exists, please try to edit it");
+        }
   }
 
     render() {
@@ -65,4 +71,8 @@ class AppThumbnailForm extends Component {
     }
 }
 
-export default AppThumbnailForm;
+var mapStateToProps = function(state) {
+    return {passwords: state.passwords}
+}
+
+export default connect(mapStateToProps)(AppThumbnailForm);

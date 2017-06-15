@@ -4,6 +4,9 @@ import {connect} from 'react-redux';
 import {Modal,Button,Glyphicon} from 'react-bootstrap';
 import firebase from 'firebase';
 import AppPassword from './AppPassword';
+import './css/components/AppPassword.css';
+import './css/components/AppThumbnailModal.css';
+
 
 class AppModalThumbnail extends Component {
 
@@ -29,7 +32,6 @@ class AppModalThumbnail extends Component {
           //Add password to the redux state
         const myPassword = {
                 'namePass' : snapshot.child("value").val(),
-                'pass': snapshot.child("password").val(),
                 'idPassword': snapshot.child("idPassword").val()
             };
 
@@ -41,34 +43,38 @@ class AppModalThumbnail extends Component {
 
 
 handlePassword(){
-  const {close,add} = this.props;
-    if (add)
-      this.otherName();
-    else {
-      this.editPassword();
+  const {passwords,showModalDialog,close,add} = this.props;
+  let closed=true;
+
+  if (this.state.password!=undefined){
+           if (this.state.password.length<4){
+         alert("you need a password at least 4 characters long");
+         closed=false;
+       }else {
+            if (add){
+              if (showModalDialog.value=="Other"){
+                const other = prompt("Please enter a name for your password", "Don't Forget");
+                if (other != null){
+                  const existOther = passwords.findIndex(pass => pass.namePass === other);
+                  if (existOther<0){
+                    this.addPassword(other);
+
+                    }else
+                      alert("the password already exists, please try to edit it");
+                    }
+                }else {
+                  const add = confirm("Are you sure?");
+                  if (add)
+                    this.addPassword(showModalDialog.value);
+                  }
+              }else {
+              this.editPassword(showModalDialog.value);
+            }
+          }
     }
 
-  close();
-}
-
-otherName(){
-  const {showModalDialog} = this.props;
-
-if (this.state.password!=undefined){
-  if (this.state.password.length<4)
-    alert("you need a password at least 4 characters long")
-  else {
-    if (showModalDialog.value=="Other"){
-        const other = prompt("Please enter a name for your password", "Don't Forget");
-        if (other != null)
-            this.addPassword(other);
-          } else {
-                const add = confirm("Are you sure?");
-                if (add)
-                  this.addPassword(showModalDialog.value);
-                }
-      }
-  }
+if (closed)
+      close();
 }
 
 
@@ -90,16 +96,16 @@ const exist = this.props.passwords.findIndex(pass => pass.namePass === namePass)
   }
 }
 
-editPassword(){
-  const {editPass,passwords}=this.props;
-//  const edit = confirm("Are you sure?");
-    /*if (edit)
-        editPass({namePass:showModalDialog.value,pass:this.state.password});
+editPassword(password){
+  const {passwords}=this.props;
+
+  const edit = confirm("Are you sure?");
+    if (edit){
 
     //update from firebase database
-      const ref = firebase.database().ref(`passwords/${passwords.filter(pass => pass.namePass==showModalDialog.value)[0].idPassword}`);
-      ref.update({password:this.state.password});*/
-
+      const ref = firebase.database().ref(`passwords/${passwords.filter(pass => pass.namePass==password)[0].idPassword}`);
+      ref.update({password:this.state.password});
+      }
 }
 
 
@@ -108,13 +114,17 @@ render() {
         return (
           /* My Modal Dialog */
 
-            <Modal show={showModalDialog.showModal} onHide={close} bsSize="small">
+            <Modal show={showModalDialog.showModal} onHide={close} bsSize="small"º>
               <Modal.Header closeButton>
-                <Modal.Title>My Password</Modal.Title>
+                <Modal.Title className="StandardModalCenter">My Password</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <Button bsSize="small" bsStyle="info" onClick={this.handlePassword}>OK</Button>
-                <AppPassword show={true} handleFieldChange={this.handleFieldChange}/>
+
+
+                <p><AppPassword show={true} handleFieldChange={this.handleFieldChange} className="StandardModalCenter StandardWidth" classNameGlyphicon="StandarModalGlyphicon"/></p>
+                <Button bsSize="small" bsStyle="info" onClick={this.handlePassword} className="StandardModalCenter">Ok</Button>
+                <Button bsSize="small" bsStyle="info" onClick={close} className="StandardComponent">Close</Button>
+
               </Modal.Body>
             </Modal>
 
@@ -134,12 +144,7 @@ var mapDispatchToProps = function(dispatch) {
       dispatch({
         type: 'ADD_PASSWORD',
         password
-      })},
-      editPass: function(password) {
-        dispatch({
-          type: 'UPDATE_PASSWORD',
-          password
-        })},
+      })}
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(AppModalThumbnail);

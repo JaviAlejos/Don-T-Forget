@@ -46,15 +46,6 @@ var passwords=function (state=[], action) {
 
   case 'DELETE_PASSWORDS':
     return [];
-  case 'UPDATE_PASSWORD':
-      const i = state.findIndex(pass => pass.namePass === action.password.namePass);
-      return state.map((item,index)=>{
-          if(index!=i)
-            //This isn't the item we care about -- keep it as-is
-            return item;
-            //otherwise, this is the one we want
-          return {...item,...action.password};
-      });
   default:
     return state;
   }

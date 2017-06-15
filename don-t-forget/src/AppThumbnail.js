@@ -33,7 +33,7 @@ deletePassword(){
   const {name,deletePass,passwords}=this.props;
   const erase = confirm("Are you sure?");
     if (erase)
-      deletePass({namePass:name,pass:''});
+      deletePass({namePass:name});
 
     //delete from firebase database
       const ref = firebase.database().ref(`passwords/${passwords.filter(pass => pass.namePass==name)[0].idPassword}`);
@@ -59,14 +59,12 @@ render() {
 
       return (
           <Thumbnail >
+                          <AppModalThumbnail showModalDialog={this.state} close={this.closeAppModal} add={false}/>
               <p>
                 <OverlayTrigger placement="top" overlay={tooltipName}>
                   <img src={`../icons/${varname}.png`} alt="70x70" className="AppThumbnailImage"/>
                 </OverlayTrigger>
               </p>
-
-              <AppModalThumbnail showModalDialog={this.state} close={this.closeAppModal} add={false}/>
-
               <OverlayTrigger placement="top" overlay={tooltipSend}>
                 <span>
                   <Glyphicon className="AppThumbnailButton GlyphiconOk" glyph="glyphicon glyphicon-envelope" />
