@@ -16,13 +16,13 @@ class AppThumbnaiList extends Component {
             {
                 this.props.passwords.map(password=>{
                       return (
-                        <Col xs={3} md={3}>
+                        <Col xs={4} md={4}>
                           <AppThumbnail name={password.namePass} />
                         </Col>
                   );
                 })}
 
-            <Col xs={3} md={3}>
+            <Col xs={4} md={4}>
               <AppThumbnailForm/>
             </Col>
           </Row>

@@ -39,14 +39,14 @@ class AppThumbnailForm extends Component {
 
     render() {
       const {show}=this.props;
-      const tooltip = (<Tooltip id="tooltip"><strong>Click +</strong> to add password</Tooltip>);
+      const tooltip = (<Tooltip id="tooltip"><strong>Click </strong> to add password</Tooltip>);
 
       return (
 
           <Thumbnail>
             <p>
               <OverlayTrigger placement="right" overlay={tooltip}>
-                <img src="../icons/Plus.png" alt="70x70"className="AppThumbnailImage" onClick={this.showAppModal}/>
+                <img src="../icons/Key.gif" alt="70x70"className="AppThumbnailImage" onClick={this.showAppModal}/>
               </OverlayTrigger>
             </p>
             <p>
@@ -62,7 +62,7 @@ class AppThumbnailForm extends Component {
             </select>
           </Thumbnail>
 
-          /*<Thumbnail src="../icons/Plus.png" alt="by tFity">
+          /*< Key.gif --> http://share-the-vision.nl/index.php/huwelijkscursus/de-verdieping/aanvraag-wachtwoord3
               GitHub --> by OpenClipart-Vectors
               Twitter --> by lonaug
               Facebook $$ Google Instagram --> by wikimedia commons

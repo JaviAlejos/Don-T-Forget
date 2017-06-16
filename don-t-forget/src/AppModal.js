@@ -3,6 +3,7 @@ import './css/App.css';
 import {connect} from 'react-redux';
 import {Modal,Button,Glyphicon} from 'react-bootstrap';
 import firebase from 'firebase';
+import './css/components/AppPassword.css';
 
 
 class AppModal extends Component {
@@ -63,8 +64,8 @@ if (showModalDialog.event!="")
     </Modal.Header>
     <Modal.Body>
       {this.renderForm()}
-      <Button onClick={this.delete}> <Glyphicon glyph="glyphicon glyphicon-trash" /> Delete</Button>
-      <Button onClick={close}>Close</Button>
+      <Button bsStyle="info" onClick={this.delete}> <Glyphicon glyph="glyphicon glyphicon-trash" /> Delete</Button>
+      <Button bsStyle="info" onClick={close} className="StandardComponent">Close</Button>
     </Modal.Body>
   </Modal>
 </div>

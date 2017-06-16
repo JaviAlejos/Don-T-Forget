@@ -114,14 +114,14 @@ render() {
         return (
           /* My Modal Dialog */
 
-            <Modal show={showModalDialog.showModal} onHide={close} bsSize="small"º>
+            <Modal show={showModalDialog.showModal} onHide={close} bsSize="small">
               <Modal.Header closeButton>
-                <Modal.Title className="StandardModalCenter">My Password</Modal.Title>
+                <Modal.Title>Add your password</Modal.Title>
               </Modal.Header>
               <Modal.Body>
 
 
-                <p><AppPassword show={true} handleFieldChange={this.handleFieldChange} className="StandardModalCenter StandardWidth" classNameGlyphicon="StandarModalGlyphicon"/></p>
+                <p><AppPassword show={true} handleFieldChange={this.handleFieldChange} className="StandardModalCenter StandardWidth"/></p>
                 <Button bsSize="small" bsStyle="info" onClick={this.handlePassword} className="StandardModalCenter">Ok</Button>
                 <Button bsSize="small" bsStyle="info" onClick={close} className="StandardComponent">Close</Button>
 
