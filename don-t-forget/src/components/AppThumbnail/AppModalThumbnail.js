@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import './css/App.css'
+import '../App/App.css'
 import {connect} from 'react-redux';
 import {Modal,Button,Glyphicon} from 'react-bootstrap';
 import firebase from 'firebase';
-import AppPassword from './AppPassword';
-import './css/components/AppPassword.css';
-import './css/components/AppThumbnailModal.css';
+import AppPassword from 'react-component-password';
+import './css/AppThumbnailModal.css';
 
 
 class AppModalThumbnail extends Component {

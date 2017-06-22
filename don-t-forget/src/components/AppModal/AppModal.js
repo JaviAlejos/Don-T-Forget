@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import './css/App.css';
+import '../App/App.css';
 import {connect} from 'react-redux';
 import {Modal,Button,Glyphicon} from 'react-bootstrap';
 import firebase from 'firebase';
-import './css/components/AppPassword.css';
+import '../AppPassword/AppPassword.css';
 
 
 class AppModal extends Component {

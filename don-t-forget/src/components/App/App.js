@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import AppCarousel from './AppCarousel';
-import AppNavBar from './AppNavBar';
-import AppCalendar from './AppCalendar';
-import AppThumbnaiList from './AppThumbnaiList';
+import AppCarousel from '../AppCarousel/AppCarousel';
+import AppNavBar from '../AppNavBar/AppNavBar';
+import AppCalendar from '../AppCalendar/AppCalendar';
+import AppThumbnaiList from '../AppThumbnail/AppThumbnaiList';
 import {connect} from 'react-redux';
 
 

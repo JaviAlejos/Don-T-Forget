@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from './components/App/App';
 import firebase from 'firebase';
 import { createStore,combineReducers } from 'redux';
 import { Provider } from 'react-redux';
@@ -70,7 +70,7 @@ var dispatch=combineReducers({
 
 ReactDOM.render(
 <Provider store={createStore(dispatch)}>
-  <App />
+  <App/>
 </Provider>,
   document.getElementById('root')
 );

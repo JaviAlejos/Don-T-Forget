@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Grid,Row,Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import './css/components/AppThumbnail.css';
+import './css/AppThumbnail.css';
 import AppThumbnail from './AppThumbnail';
 import AppThumbnailForm from './AppThumbnailForm';
 import {connect} from 'react-redux';

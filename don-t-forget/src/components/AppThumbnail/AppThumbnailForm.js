@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Thumbnail,OverlayTrigger,Tooltip} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import './css/components/AppThumbnail.css';
+import './css/AppThumbnail.css';
 import {connect} from 'react-redux';
 import firebase from 'firebase';
 import AppModalThumbnail from './AppModalThumbnail';

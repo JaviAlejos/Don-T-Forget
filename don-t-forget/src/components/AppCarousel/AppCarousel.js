@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Carousel} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import './css/components/AppCarousel.css';
-import caritem1 from '../public/Remember-birthday.jpg';
-import caritem2 from '../public/Remember-pass.jpg';
-import caritem3 from '../public/Remember-shopping.jpg';
+import './AppCarousel.css';
+import caritem1 from '../../../public/Remember-birthday.jpg';
+import caritem2 from '../../../public/Remember-pass.jpg';
+import caritem3 from '../../../public/Remember-shopping.jpg';
 
 class AppCarousel extends Component {
     render() {

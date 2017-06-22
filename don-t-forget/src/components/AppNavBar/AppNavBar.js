@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {Button, Navbar, NavItem, Nav} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import './css/App.css';
-import logo from '../public/Remember.png';
+import '../App/App.css';
+import logo from '../../../public/Remember.png';
 import firebase from 'firebase';
 import {connect} from 'react-redux';
-import AppMenu from './AppMenu';
+import AppMenu from '../AppMenu/AppMenu';
 
 class AppNavBar extends Component {
 

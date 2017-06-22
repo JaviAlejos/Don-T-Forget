@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Thumbnail,OverlayTrigger,Tooltip,Glyphicon} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
-import './css/components/AppPassword.css';
-import './css/components/AppThumbnail.css';
+import '../AppPassword/AppPassword.css';
+import './css/AppThumbnail.css';
 import {connect} from 'react-redux';
 import firebase from 'firebase';
 import AppModalThumbnail from './AppModalThumbnail';

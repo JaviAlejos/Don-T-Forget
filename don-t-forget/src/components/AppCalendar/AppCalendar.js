@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import './css/components/AppCalendar.css';
+import './AppCalendar.css';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import {connect} from 'react-redux';
-import AppModal from './AppModal';
+import AppModal from '../AppModal/AppModal';
 import firebase from 'firebase';
 
 BigCalendar.momentLocalizer(moment);
