@@ -23,7 +23,7 @@ class AppModalThumbnail extends Component {
 
     initializeDatabase(props){
       const {user,passwords} = props;
-      if(!passwords.length){
+      if(passwords!=undefined && !passwords.length){
         // Find all password whose user is me.
         const ref = firebase.database().ref("passwords");
         ref.orderByChild("user").equalTo(user.user.email).on("child_added", snapshot=>{

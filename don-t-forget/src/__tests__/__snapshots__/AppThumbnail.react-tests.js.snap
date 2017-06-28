@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Simple Google Thumbnail 1`] = `
+<div
+  className="thumbnail"
+>
+  <img
+    alt={undefined}
+    src={undefined}
+  />
+  <div
+    className="caption"
+  >
+    <p>
+      <img
+        alt="70x70"
+        className="AppThumbnailImage"
+        onBlur={[Function]}
+        onClick={null}
+        onFocus={[Function]}
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+        src="../icons/Google.png"
+      />
+    </p>
+    <span
+      onBlur={[Function]}
+      onClick={null}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      <span
+        className="AppThumbnailButton GlyphiconOk glyphicon glyphicon-glyphicon glyphicon-envelope"
+      />
+    </span>
+    <span
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      <span
+        className="StandardComponent GlyphiconWarning glyphicon glyphicon-glyphicon glyphicon-pencil"
+      />
+    </span>
+    <span
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
+    >
+      <span
+        className="StandardComponent GlyphiconDanger glyphicon glyphicon-glyphicon glyphicon-remove"
+      />
+    </span>
+  </div>
+</div>
+`;

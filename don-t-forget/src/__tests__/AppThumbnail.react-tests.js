@@ -5,14 +5,42 @@ import AppThumbnail from '../components/AppThumbnail/AppThumbnail';
 //importas el test-render
 import renderer from 'react-test-renderer';
 
-jest.dontMock('bootstrap/dist/css/bootstrap.css');
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+var passwords=function (state=[], action) {
+  debugger;
+  switch (action.type) {
+  case 'ADD_PASSWORD':
+      const exist = state.findIndex(pass => pass.namePass === action.password.namePass);
+      if(exist<0)
+        return state.concat([ action.password ]);
+        else
+          return state;
+  case 'DELETE_PASSWORD':
+    return state.filter(pass => pass.namePass!=action.password.namePass);
+
+  case 'DELETE_PASSWORDS':
+    return [];
+  default:
+    return state;
+  }
+}
+
 
 test(
     'Simple Google Thumbnail', //titulo del test
     //funcion del test
     () => {
+      const store = createStore(passwords) // can also be a mock
     const component = renderer.create(
-    <AppThumbnail name={"Google"}/>
+
+
+       <Provider store={store}>
+         <AppThumbnail name={"Google"}/>
+       </Provider>
+
+
   );
 
   let tree = component.toJSON();
